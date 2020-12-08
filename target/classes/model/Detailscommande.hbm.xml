@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 juil. 2019 13:23:47 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="model.Detailscommande" table="detailscommande" schema="public">
+        <composite-id name="id" class="model.DetailscommandeId">
+            <key-property name="idcommande" type="int">
+                <column name="idcommande" />
+            </key-property>
+            <key-property name="idproduct" type="int">
+                <column name="idproduct" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="commande" class="model.Commande" update="false" insert="false" fetch="select">
+            <column name="idcommande" not-null="true" />
+        </many-to-one>
+        <many-to-one name="produitt" class="model.Produitt" update="false" insert="false" fetch="select">
+            <column name="idproduct" not-null="true" />
+        </many-to-one>
+        <property name="quantite" type="java.lang.Integer">
+            <column name="quantite" />
+        </property>
+    </class>
+</hibernate-mapping>

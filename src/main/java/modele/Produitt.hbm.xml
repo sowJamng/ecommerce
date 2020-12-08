@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 sept. 2019 13:48:29 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="modele.Produitt" table="produitt" schema="public">
+        <id name="idproduct" type="int">
+            <column name="idproduct" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categorie" class="modele.Categorie" fetch="select">
+            <column name="idcategorie" not-null="true" />
+        </many-to-one>
+        <many-to-one name="boutique" class="modele.Boutique" fetch="select">
+            <column name="idboutique" />
+        </many-to-one>
+        <many-to-one name="stock" class="modele.Stock" fetch="select">
+            <column name="idstock" not-null="true" />
+        </many-to-one>
+        <property name="nom" type="string">
+            <column name="nom" length="254" />
+        </property>
+        <set name="conditionnements" table="conditionnement" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproduct" not-null="true" />
+            </key>
+            <one-to-many class="modele.Conditionnement" />
+        </set>
+        <set name="depenseses" table="depenses" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproduct" not-null="true" />
+            </key>
+            <one-to-many class="modele.Depenses" />
+        </set>
+        <set name="detailscommandes" table="detailscommande" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproduct" not-null="true" />
+            </key>
+            <one-to-many class="modele.Detailscommande" />
+        </set>
+        <set name="formats" table="format" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproduct" not-null="true" />
+            </key>
+            <one-to-many class="modele.Format" />
+        </set>
+    </class>
+</hibernate-mapping>

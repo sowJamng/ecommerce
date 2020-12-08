@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 sept. 2019 13:48:29 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="modele.Categorie" table="categorie" schema="public">
+        <id name="idcategorie" type="int">
+            <column name="idcategorie" />
+            <generator class="assigned" />
+        </id>
+        <property name="libelle" type="java.lang.Integer">
+            <column name="libelle" />
+        </property>
+        <set name="produitts" table="produitt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcategorie" not-null="true" />
+            </key>
+            <one-to-many class="modele.Produitt" />
+        </set>
+    </class>
+</hibernate-mapping>

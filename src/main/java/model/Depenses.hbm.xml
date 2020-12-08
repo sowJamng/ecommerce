@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 juil. 2019 13:23:47 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="model.Depenses" table="depenses" schema="public">
+        <id name="iddepense" type="int">
+            <column name="iddepense" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="commercant" class="model.Commercant" fetch="select">
+            <column name="idcommercant" not-null="true" />
+        </many-to-one>
+        <many-to-one name="produitt" class="model.Produitt" fetch="select">
+            <column name="idproduct" not-null="true" />
+        </many-to-one>
+        <property name="datedepense" type="java.lang.Integer">
+            <column name="datedepense" />
+        </property>
+        <property name="montant" type="java.lang.Integer">
+            <column name="montant" />
+        </property>
+    </class>
+</hibernate-mapping>

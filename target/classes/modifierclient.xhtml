@@ -1,0 +1,80 @@
+   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">         
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title> Acceuil</title>
+</h:head>
+<h:body>
+ 
+ 
+	  <h:form columns="2"   style="position: absolute; top: 60px; left: 10px;">
+    <p:growl>
+        <p:autoUpdate />
+    </p:growl>
+ 
+    <p:panelMenu style="width:200px">
+        <p:submenu label="Voir Statistiques">
+            <p:menuitem value="Chiffre D'affaire" action="#{menuView.save}" url="chiffredaffaire.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Meilleurs clients" action="#{menuView.update}" url="meilleurclient.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+        <p:submenu label="Gerer Stock">
+            <p:menuitem value="Voir seuil atteint" action="#{menuView.delete}" url="seuilatteint.xhtml"  ajax="false" icon="pi pi-times"/>
+            <p:menuitem value="Reapprovisionement" action="#{menuView.delete}" url="reapprovisionement.xhtml"  ajax="false" icon="pi pi-times"/>
+        </p:submenu>
+        <p:separator />
+         
+        <p:submenu label="Comptes" >
+                                 <p:menuitem value="Nouveau Compte" url="./ajoutercompte.xhtml" icon="pi pi-home" />
+                    <p:menuitem value="Liste des Compte" url="./listecompte.xhtml" icon="pi pi-file" />
+                    <p:menuitem value="Depôt" url="./depot.xhtml" icon="pi pi-arrow-down" />
+                    <p:menuitem value="Retrait" url="retrait.xhtml" icon="pi pi-briefcase" />
+                       </p:submenu>
+        <p:submenu label="Ventes" >
+             
+                    <p:menuitem value="Vente en Cours" url="./venteencours.xhtml" icon="pi pi-home" />
+                    <p:menuitem value="A livrer " url="./alivrer.xhtml" icon="pi pi-file" />
+                    <p:menuitem value="Vente Annulé" url="./venteannuler.xhtml" icon="pi pi-arrow-down" />
+                     
+                                  </p:submenu>
+    </p:panelMenu>
+</h:form> 
+ <h:form id="form"  style="position: absolute; top: 90px; left: 400px;width:600px ">
+     <p:panel id="panel" header="Modification d'un client" >
+     
+     <h:panelGrid     columns="3" cellpadding="5" style="font-size:16pt" >
+       <h:outputText value=" Id_Client"/>
+     <h:outputText  value="#{param.idclient}"/><br/>
+     <h:outputText value="Prenom"/>
+     <p:inputText required="true"  value="#{clientBean.client.prenom}"/><br/>
+     <h:outputText value="Nom"/>
+     <p:inputText required="true"  value="#{clientBean.client.nom}"/><br/>
+     <h:outputText  value="Date_naissance"/>
+     <p:calendar required="true"  value="#{clientBean.client.datenaiss}"/><br/>
+     <h:outputText  value="Telephone"/>
+     <p:inputText required="true"   value="#{clientBean.client.telephone}"/><br/>
+     <h:outputText value="Login"/>
+     <p:inputText required="true"  value="#{clientBean.client.email}"/><br/>
+        <h:outputText value="Adresse"/>
+     <p:inputText required="true"   value="#{clientBean.client.adresse}"/><br/>
+     <h:outputText value="Mot de passe"/>
+     <h:inputSecret required="true"  value="#{clientBean.client.motpass}"/><br/>
+     <!--  <h:outputText value="Confirmer mot de passe"/>
+     <h:inputSecret required="true"   value=""/><br/>-->
+        <h:commandButton value="valider"  style="margin:1px 100px 1px 1px;" actionListener="#{clientBean.editClient}"> 
+          <f:param name="idclient"  value="#{param.idclient}"></f:param>
+          <f:param name="name"  value="#{clientBean.client.nom}" ></f:param> 
+        </h:commandButton> 
+        <h:commandButton value="valider"  style="margin:1px 100px 1px 1px;" url="listerclient.xhtml"> 
+        </h:commandButton>
+    </h:panelGrid>
+     </p:panel>
+   </h:form>
+
+</h:body>
+</html>
+ 

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 juil. 2019 13:23:47 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="model.Commercant" table="commercant" schema="public">
+        <id name="idcommercant" type="int">
+            <column name="idcommercant" />
+            <generator class="increment" />         
+        </id>
+        
+        <property name="nom" type="string">
+            <column name="nom" length="254" />
+        </property>
+        <property name="prenom" type="string">
+            <column name="prenom" length="254" />
+        </property>
+        <property name="datenaiss" type="date">
+            <column name="datenaiss" length="13" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="254" />
+        </property>
+        <property name="adresse" type="string">
+            <column name="adresse" length="254" />
+        </property>
+        <property name="telephone" type="string">
+            <column name="telephone" length="254" />
+        </property>
+        <property name="motpass" type="string">
+            <column name="motpass" length="254" />
+        </property>
+        <set name="depenseses" table="depenses" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcommercant" not-null="true" />
+            </key>
+            <one-to-many class="model.Depenses" />
+        </set>
+        <set name="boutiquiers" table="boutiquier" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcommercant" not-null="true" />
+            </key>
+            <one-to-many class="model.Boutiquier" />
+        </set>
+    </class>
+</hibernate-mapping>

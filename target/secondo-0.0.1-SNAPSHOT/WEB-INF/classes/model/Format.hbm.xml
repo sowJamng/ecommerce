@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 juil. 2019 13:23:47 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="model.Format" table="format" schema="public">
+        <id name="idfromat" type="int">
+            <column name="idfromat" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="produitt" class="model.Produitt" fetch="select">
+            <column name="idproduct" not-null="true" />
+        </many-to-one>
+        <property name="typeformat" type="string">
+            <column name="typeformat" length="254" />
+        </property>
+    </class>
+</hibernate-mapping>

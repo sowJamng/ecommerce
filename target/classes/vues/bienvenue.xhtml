@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+ <h:head>
+	<title> Authentification</title>	
+	<h:outputStylesheet library="webjars"
+        name="bootstrap/3.3.7/css/bootstrap.min-jsf.css" />
+    <h:outputScript library="webjars"
+        name="jquery/1.11.1/jquery.js" />
+    <h:outputScript library="webjars"
+        name="bootstrap/3.3.7/js/bootstrap.js" />
+</h:head>
+<h:body>
+Bienvenue Mr 
+ 	<h:outputText value="#{commercantBean.curentUser}"/>
+ </h:body>
+</html>

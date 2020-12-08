@@ -1,0 +1,103 @@
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">         
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<title>ajouter compte</title>
+</h:head>
+<h:body>
+ 
+ 
+	  <h:form columns="2"   style="position: absolute; top: 60px; left: 10px;">
+    <p:growl>
+        <p:autoUpdate />
+    </p:growl>
+ 
+    <p:panelMenu style="width:200px">
+        <p:submenu label="Voir Statistiques">
+            <p:menuitem value="Chiffre D'affaire" action="#{menuView.save}" url="chiffredaffaire.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Meilleurs clients" action="#{menuView.update}" url="meilleurclient.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+        <p:submenu label="Gerer Stock">
+            <p:menuitem value="Voir seuil atteint" action="#{menuView.delete}" url="seuilatteint.xhtml"  ajax="false" icon="pi pi-times"/>
+            <p:menuitem value="Reapprovisionement" action="#{menuView.delete}" url="reapprovisionement.xhtml"  ajax="false" icon="pi pi-times"/>
+        </p:submenu>
+        <p:separator />
+         
+        <p:submenu label="Comptes" >
+                                 <p:menuitem value="Nouveau Compte" url="./ajoutercompte.xhtml" icon="pi pi-home" />
+                    <p:menuitem value="Liste des Compte" url="./listecompte.xhtml" icon="pi pi-file" />
+                    <p:menuitem value="Depôt" url="./depot.xhtml" icon="pi pi-arrow-down" />
+                    <p:menuitem value="Retrait" url="retrait.xhtml" icon="pi pi-briefcase" />
+                       </p:submenu>
+        <p:submenu label="Ventes" >
+             
+                    <p:menuitem value="Vente en Cours" url="./venteencours.xhtml" icon="pi pi-home" />
+                    <p:menuitem value="A liver " url="./alivrer.xhtml" icon="pi pi-file" />
+                    <p:menuitem value="Vente Annulé" url="./venteannuler.xhtml" icon="pi pi-arrow-down" />
+                     
+                                  </p:submenu>
+    </p:panelMenu>
+</h:form> 
+ <h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="Mes Clients" icon="pi pi-file">
+            <p:menuitem value="Nouveau Client" url="./ajouterclient.xhtml"/>
+            <p:menuitem value="lister nos Clients" url="./listerclient.xhtml" />
+            <p:separator />
+            <p:menuitem value="Modifier un Client" url="./modifierclient.xhtml" />
+            <p:menuitem value=" Supprimer un Client" url="./supprimerclient.xhtml" />
+        </p:submenu>
+ 
+        <p:submenu label="Mes Produits" icon="pi pi-pencil">
+            <p:menuitem value="Nouveau Produit" url="./ajouterproduit.xhtml" icon="pi pi-angle-double-left" />
+            <p:menuitem value="Modifier un Produit" url="./modifierproduit.xhtml" icon="pi pi-angle-double-right" />
+            <p:menuitem value="Supprimer un Produit" url="./supprimerproduit.xhtml" icon="pi pi-angle-double-right" />
+            <p:menuitem value="Lister les Produits" url="./listerproduit.xhtml" icon="pi pi-angle-double-right" />
+        </p:submenu>
+ 
+         
+         <p:menuitem value="Voir mes Boutiques" url="./mesboutique.xhtml" icon="pi pi-times" />
+         <p:menuitem value="Mon Compte"  url="moncomptecommercant.xhtml" icon="pi pi-times" />
+        <p:menuitem value="Deconnexion" url="./connexioncommercant.xhtml" icon="pi pi-times" />
+ 
+        <f:facet name="options">
+            <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search client"/>
+            <p:commandButton type="button" value="Bonjour Mr gning" icon="pi pi-home"  />
+        </f:facet>
+    </p:menubar>
+</h:form>
+
+
+<h:form id="form"  style="position: absolute; top: 90px; left: 400px;width:600px ">
+     <p:panel id="panel" header="Ouverture d'un Compte" >
+     
+     <h:panelGrid     columns="3" cellpadding="5" style="font-size:16pt" >
+     <h:outputText value="Numero de Compte"/>
+     <p:inputText   value=""/><br/>
+     <h:outputText value="Solde initial"/>
+     <p:inputText   value=""/><br/>
+     <h:outputText value="Decouverte"/>
+     <p:inputText  value="" /><br/> 
+     <h:outputText value="Id_Client"/>
+     <p:inputText   value="" /><br/>
+      
+     <p:commandButton value="valider"/>
+     <p:commandButton value="Annuler"/>
+     
+     </h:panelGrid>
+     
+   
+     </p:panel>
+   </h:form>
+
+</h:body>
+</html>
+ 

@@ -1,0 +1,170 @@
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">         
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>lister commerçant</title>
+	<h:outputScript libarary="js" name="jquery-1.10.2.js"></h:outputScript>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#checkBoxAll'). click(function(){
+			if($(this).is(":checked"))
+				 $('.chkCheckBoxId').prop('checked',true);
+			else
+				$('.chkCheckBoxId').prop('checked',false);
+		});
+	});
+	
+	</script>
+	<script>
+	function confirmer(){
+		return confirm("Etes vous sur de vouloir supprimer?");
+	}</script>
+</h:head>
+<h:body>
+ 
+ 
+	  <h:form columns="2"   style="position: absolute; top: 60px; left: 10px;">
+    <p:growl>
+        <p:autoUpdate />
+    </p:growl>
+ 
+    <p:panelMenu style="width:200px">
+        <p:submenu label="Regions">
+            <p:menuitem value="Nouvelle Region" action="#{menuView.save}" url="ajouterregion.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Modifier Region" action="#{menuView.update}" url="modifierregion.xhtml"  icon="pi pi-refresh" />
+            <p:menuitem value="Lister les Regions" action="#{menuView.update}" url="listerregion.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+        <p:submenu label="Departements">
+            <p:menuitem value="Nouveau Departement" action="#{menuView.save}" url="ajouterdepartement.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Modifier Departement" action="#{menuView.update}" url="modifierdepartement.xhtml"  icon="pi pi-refresh" />
+            <p:menuitem value="Lister les  Departements" action="#{menuView.update}" url="listerdepartement.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+        
+         
+        <p:separator />
+         
+         <p:submenu label="Commune">
+            <p:menuitem value="Nouvelle Commune" action="#{menuView.save}" url="ajoutercommune.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Modifier Commune" action="#{menuView.update}" url="modifiercommune.xhtml"  icon="pi pi-refresh" />
+            <p:menuitem value="Lister  Communes" action="#{menuView.update}" url="listercommune.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+        <p:submenu label="Quartier">
+            <p:menuitem value="Nouveau Quartier" action="#{menuView.save}" url="ajouterquartier.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Modifier Quartier" action="#{menuView.update}" url="modifierquartier.xhtml"  icon="pi pi-refresh" />
+            <p:menuitem value="Lister les Quartiers" action="#{menuView.update}" url="listerquartier.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+         
+        
+    </p:panelMenu>
+</h:form> 
+
+ <h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="Mes Commerçants" icon="pi pi-file">
+            <p:menuitem value="Nouveau Commerçant" url="./ajoutercommercant.xhtml"/>
+            <p:menuitem value="Modifier Commerçant" url="./modifiercommercant.xhtml" />
+            <p:menuitem value=" Supprimer Commerçant" url="./supprimercommercant.xhtml" />
+            <p:separator />
+              <p:menuitem value="lister les Commerçants" url="./listercommercant.xhtml" />
+        </p:submenu>
+         <p:submenu label="Categorie" icon="pi pi-pencil">
+            <p:menuitem value="Nouvelle Categorie " url="./ajoutercategorie.xhtml" icon="pi pi-angle-double-left" />
+            <p:menuitem value="Modifier Categorie" url="./modifiercategorie.xhtml" icon="pi pi-angle-double-right" />
+            <p:menuitem value="Supprimer Categorie" url="./supprimercategorie.xhtml" icon="pi pi-angle-double-right" />
+            <p:separator />
+            <p:menuitem value="Lister les Categories" url="./listercategorie.xhtml" icon="pi pi-angle-double-right" />
+        </p:submenu>
+   
+        <p:submenu label="Boutiques" icon="pi pi-pencil">
+            <p:menuitem value="Nouvelle Boutique " url="./ajouterboutique.xhtml" icon="pi pi-angle-double-left" />
+            <p:menuitem value="Modifier Boutique" url="./modifierboutique.xhtml" icon="pi pi-angle-double-right" />
+            <p:menuitem value="Supprimer Boutique" url="./supprimerboutique.xhtml" icon="pi pi-angle-double-right" />
+            <p:separator />
+            <p:menuitem value="Lister les Boutiques" url="./listerboutique.xhtml" icon="pi pi-angle-double-right" />
+        </p:submenu>
+        
+ 
+        
+          
+        <p:menuitem value="Deconnexion" url="./connexionadministrateur.xhtml" icon="pi pi-times" />
+ 
+        <f:facet name="options">
+            <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search commerçant"/>
+            <p:commandButton type="button" url="./deconnexionadministrateur.xhtml" icon="pi pi-home"  />
+        </f:facet>
+    </p:menubar>
+</h:form>
+
+
+<h:form id="form"  style="position: absolute; top: 90px; left: 220px;width:1100px ">
+    <p:growl id="msgs" showDetail="true"/>
+
+  <!--   <p:dataTable id="cars1" widgetVar="cars1" var="o" value="#{commercantBean.commercants}" editable="true" style="margin-bottom:20px"> -->
+    <h:commandButton value="delete" onclick="return confim('Etes vous sur de vouloir supprimer?')" action="#{commercantBean.delete()}">
+    </h:commandButton>
+    
+    <p:dataTable  id="lescom" value="#{commercantBean.commercants}" var="o" editable="true" style="margin-bottom:20px; width:85%; border:1px solid #000;" border="1" >
+        <f:facet name="header">
+            Liste des Commerçants
+        </f:facet>
+        <p:column >
+        <f:facet name="header" >Prenom</f:facet>
+        <h:outputText value="#{o.prenom}"></h:outputText>
+        </p:column>
+        <p:column >
+        <f:facet name="header" >Nom</f:facet>
+        <h:outputText value="#{o.nom}"></h:outputText>
+        </p:column>
+        <p:column >
+        <f:facet name="header" >Telephone</f:facet>
+        <h:outputText value="#{o.telephone}"></h:outputText>
+        </p:column>
+        <p:column >
+        <f:facet name="header" >Login</f:facet>
+        <h:outputText value="#{o.email}"></h:outputText>
+        </p:column>
+        <p:column >
+        <f:facet name="header" >Adresse</f:facet>
+        <h:outputText value="#{o.adresse}"></h:outputText>
+        </p:column>
+        <p:column >
+        <f:facet name="header" >Date_Naissance</f:facet>
+        <h:outputText value="#{o.datenaiss}"></h:outputText>
+        </p:column>
+        <p:column headerText="Modifier" style="width:75px">
+        <f:facet name="header">Modifier</f:facet>
+   <h:commandLink  onclick="return confirm('Etes vous sur de vouloir modifier les infos')" actionListener="#{commercantBean. registCommercant}" > 
+   <h:graphicImage   library="images" name="iconfinder_edit-user_46799.png"   style="width: 30%; height:30% ; "/> 
+  <!--   <h:link value="modifier" autcome="./modifiercommercant.xhtml" > -->
+  <f:param name="idcommercant" value="#{o.idcommercant}" ></f:param>
+   <f:param name="operation" value="edit" ></f:param>
+     <!-- <f:param name="prenom"  value="#{o.prenom}" ></f:param>
+    <f:param name="nom"  value="#{o.nom}" ></f:param>
+     <f:param name="adresse"  value="#{o.adresse}"></f:param>
+     <f:param name="email"  value="#{o.email}" ></f:param>
+     <f:param name="date_naiss"  value="#{o.datenaiss}"></f:param>
+     <f:param name="telephone"  value="#{o.telephone}" ></f:param>
+      </h:link>  -->
+   </h:commandLink>
+        </p:column>
+        <p:column>
+     <f:facet name="header">Supprimer</f:facet>
+   <h:commandLink  onclick="return confirm('Etes vous sur de vouloir supprimer')" actionListener="#{commercantBean.deleteCommercantt}" >  
+   <h:graphicImage   library="images" name="iconfinder_Remove-Male-User_49612.png"   style="width: 30%; height:30% ; "/>
+      <f:param name="idcommercant"  value="#{o.idcommercant}"></f:param>
+     <f:param name="name"  value="jamdong" ></f:param>
+   </h:commandLink>
+    </p:column>
+        </p:dataTable>
+        </h:form>
+
+</h:body>
+</html>
+ 

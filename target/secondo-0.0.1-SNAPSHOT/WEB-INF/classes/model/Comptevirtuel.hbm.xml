@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 juil. 2019 13:23:47 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="model.Comptevirtuel" table="comptevirtuel" schema="public">
+        <id name="idcomptev" type="int">
+            <column name="idcomptev" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="boutique" class="model.Boutique" fetch="select">
+            <column name="idboutique" not-null="true" />
+        </many-to-one>
+        <many-to-one name="boutiquier" class="model.Boutiquier" fetch="select">
+            <column name="idboutiquier" not-null="true" />
+        </many-to-one>
+        <many-to-one name="clientvirtuel" class="model.Clientvirtuel" fetch="select">
+            <column name="idclientv" not-null="true" />
+        </many-to-one>
+        <property name="datecmp" type="date">
+            <column name="datecmp" length="13" />
+        </property>
+    </class>
+</hibernate-mapping>

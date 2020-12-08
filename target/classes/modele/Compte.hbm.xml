@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 sept. 2019 13:48:29 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="modele.Compte" table="compte" schema="public">
+        <id name="numero" type="int">
+            <column name="numero" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="client" class="modele.Client" fetch="select">
+            <column name="idclient" not-null="true" />
+        </many-to-one>
+        <many-to-one name="boutiquier" class="modele.Boutiquier" fetch="select">
+            <column name="idboutiquier" not-null="true" />
+        </many-to-one>
+        <property name="datecreation" type="date">
+            <column name="datecreation" length="13" />
+        </property>
+        <property name="solde" type="java.lang.Integer">
+            <column name="solde" />
+        </property>
+    </class>
+</hibernate-mapping>

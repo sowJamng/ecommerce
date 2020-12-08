@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 juil. 2019 13:23:47 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="model.Conditionnement" table="conditionnement" schema="public">
+        <id name="idcondition" type="int">
+            <column name="idcondition" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="produitt" class="model.Produitt" fetch="select">
+            <column name="idproduct" not-null="true" />
+        </many-to-one>
+        <property name="description" type="string">
+            <column name="description" length="254" />
+        </property>
+    </class>
+</hibernate-mapping>

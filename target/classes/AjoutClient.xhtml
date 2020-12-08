@@ -1,0 +1,44 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">         
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta  />
+<title>Ajouter Clients</title>
+</h:head>
+<h:body>
+<h3>Ajout des Clientss</h3>
+ <h:form>
+ <p:panelGrid id="pan" columns="3" style="position: absolute; top: 100px; left: 200px;">
+			<f:facet name="header"> Nouveau client </f:facet>
+			<h:outputText value= "Nom" />
+			<p:inputText id="nom"  value="#{clientBean.client.nom}" style="width: 500px;"   />
+				<!--  <p:message for="nom" display= "icon" />-->
+			<h:outputText value= "Prenom" />
+			<p:inputText id="pr" required="true" value="#{clientBean.client.prenom}" style="width: 500px;"  />
+		  <!--   <p:message for="pr" display= "icon" />-->
+	
+			<h:outputText value= "adresse" />
+			<p:inputText id="adr" required="true" value="#{clientBean.client.adresse}" style="width: 500px;"  />
+		<!--   <p:message for="adr" display=, "icon" /> -->
+			<h:outputText value= "Telephone" />
+			<p:inputText id="tel" required="true" value="#{clientBean.client.telephone}" style="width: 500px;"  />
+			
+			<!--  <p:message for="tel" display= "icon"  /> -->
+			<h:outputText value= "email" />
+			<p:inputText id="lg" required="true" value="#{clientBean.client.email}" style="width: 500px;"  />
+			
+			<!--  <p:message for="lg" display= "icon" /> -->
+			<h:outputText value= "motpass" />
+			<p:inputText id="pw" required="true" value="#{clientBean.client.motpass}" style="width: 500px;"  />
+			 			<!--  <p:message for="pw" display= "icon"  /> -->
+			<p:commandButton  value="Enregistrer"   actionListener="#{clientBean.addClient}" />
+		 
+		</p:panelGrid>
+ </h:form>
+</h:body>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 sept. 2019 13:48:29 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="modele.Boutique" table="boutique" schema="public">
+        <id name="idboutique" type="int">
+            <column name="idboutique" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="quartier" class="modele.Quartier" fetch="select">
+            <column name="idquartier" not-null="true" />
+        </many-to-one>
+        <many-to-one name="commercant" class="modele.Commercant" fetch="select">
+            <column name="idcommercant" />
+        </many-to-one>
+        <property name="nom" type="string">
+            <column name="nom" length="254" />
+        </property>
+        <set name="produitts" table="produitt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idboutique" />
+            </key>
+            <one-to-many class="modele.Produitt" />
+        </set>
+        <set name="boutiquiers" table="boutiquier" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idboutique" />
+            </key>
+            <one-to-many class="modele.Boutiquier" />
+        </set>
+    </class>
+</hibernate-mapping>

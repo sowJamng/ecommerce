@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 juil. 2019 13:23:47 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="model.Produitt" table="produitt" schema="public">
+        <id name="idproduct" type="int">
+            <column name="idproduct" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categorie" class="model.Categorie" fetch="select">
+            <column name="idcategorie" not-null="true" />
+        </many-to-one>
+        <many-to-one name="stock" class="model.Stock" fetch="select">
+            <column name="idstock" not-null="true" />
+        </many-to-one>
+        <property name="nom" type="string">
+            <column name="nom" length="254" />
+        </property>
+        <set name="conditionnements" table="conditionnement" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproduct" not-null="true" />
+            </key>
+            <one-to-many class="model.Conditionnement" />
+        </set>
+        <set name="depenseses" table="depenses" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproduct" not-null="true" />
+            </key>
+            <one-to-many class="model.Depenses" />
+        </set>
+        <set name="detailscommandes" table="detailscommande" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproduct" not-null="true" />
+            </key>
+            <one-to-many class="model.Detailscommande" />
+        </set>
+        <set name="formats" table="format" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproduct" not-null="true" />
+            </key>
+            <one-to-many class="model.Format" />
+        </set>
+    </class>
+</hibernate-mapping>

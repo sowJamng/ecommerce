@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 sept. 2019 13:48:29 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="modele.Facture" table="facture" schema="public">
+        <id name="idfacture" type="int">
+            <column name="idfacture" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="commande" class="modele.Commande" fetch="select">
+            <column name="idcommande" />
+        </many-to-one>
+        <property name="montant" type="java.lang.Integer">
+            <column name="montant" />
+        </property>
+        <property name="datefact" type="date">
+            <column name="datefact" length="13" />
+        </property>
+        <set name="commandes" table="commande" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idfacture" not-null="true" />
+            </key>
+            <one-to-many class="modele.Commande" />
+        </set>
+    </class>
+</hibernate-mapping>

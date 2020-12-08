@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.password">aram196</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost/bonedong</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.search.autoregister_listeners">true</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>       
+       <!--  <property name="hibernate.validator.apply_to_ddl">false</property> --> 
+        <property name="hibernate.show_sql">true</property>
+       <property name="hibernate.hbm2ddl.auto">update</property>
+       <property name="connectio.pool_size">1</property>
+      
+    <mapping resource="model/Boutique.hbm.xml"/>
+    <mapping resource="model/Boutiquier.hbm.xml"/>
+    <mapping resource="model/Categorie.hbm.xml"/>
+    <mapping resource="model/Client.hbm.xml"/>
+    <mapping resource="model/Clientvirtuel.hbm.xml"/>
+    <mapping resource="model/Commande.hbm.xml"/>
+    <mapping resource="model/Commercant.hbm.xml"/>
+    <mapping resource="model/Commune.hbm.xml"/>
+    <mapping resource="model/Compte.hbm.xml"/>
+    
+    <mapping resource="model/Comptevirtuel.hbm.xml"/>
+    <mapping resource="model/Conditionnement.hbm.xml"/>
+    <mapping resource="model/Departement.hbm.xml"/>
+    <mapping resource="model/Depenses.hbm.xml"/>
+    <mapping resource="model/Detailscommande.hbm.xml"/>
+    <mapping resource="model/Facture.hbm.xml"/>
+    <mapping resource="model/Format.hbm.xml"/>
+    <mapping resource="model/Produitt.hbm.xml"/>
+    <mapping resource="model/Quartier.hbm.xml"/>
+    <mapping resource="model/Region.hbm.xml"/>
+    <mapping resource="model/Stock.hbm.xml"/>
+    
+        <mapping  class="model.Commercant"/>
+    <mapping class="model.Boutiquier" />
+    <mapping class="model.Depenses" />
+     <mapping class="model.Client" />
+     <mapping class="model.Boutique" />
+     <mapping class="model.Conditionnement" />
+     <mapping class="model.Compte" />
+     <mapping class="model.Commande" />
+     <mapping class="model.Departement" />
+    <mapping class="model.Categorie" />
+     <mapping class="model.Comptevirtuel" />
+     <mapping class="model.Clientvirtuel" />
+     <mapping class="model.Detailscommande" />
+     <mapping class="model.Commune" />
+     <mapping class="model.Facture" />
+     <mapping class="model.Format" />
+     <mapping class="model.Produitt" />
+     <mapping class="model.Quartier" />
+     <mapping class="model.Region" />
+     <mapping class="model.Stock" />
+    
+    
+    </session-factory>
+</hibernate-configuration>

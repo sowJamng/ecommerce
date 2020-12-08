@@ -1,0 +1,129 @@
+          <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">         
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>lister commune</title>
+</h:head>
+<h:body>
+ 
+ 
+	  <h:form columns="2"   style="position: absolute; top: 60px; left: 10px;">
+    <p:growl>
+        <p:autoUpdate />
+    </p:growl>
+ 
+    <p:panelMenu style="width:200px">
+        <p:submenu label="Regions">
+            <p:menuitem value="Nouvelle Region" action="#{menuView.save}" url="ajouterregion.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Modifier Region" action="#{menuView.update}" url="modifierregion.xhtml"  icon="pi pi-refresh" />
+            <p:menuitem value="Lister les Regions" action="#{menuView.update}" url="listerregion.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+        <p:submenu label="Departements">
+            <p:menuitem value="Nouveau Departement" action="#{menuView.save}" url="ajouterdepartement.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Modifier Departement" action="#{menuView.update}" url="modifierdepartement.xhtml"  icon="pi pi-refresh" />
+            <p:menuitem value="Lister les  Departements" action="#{menuView.update}" url="listerdepartement.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+        
+         
+        <p:separator />
+         
+         <p:submenu label="Commune">
+            <p:menuitem value="Nouvelle Commune" action="#{menuView.save}" url="ajoutercommune.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Modifier Commune" action="#{menuView.update}" url="modifiercommune.xhtml"  icon="pi pi-refresh" />
+            <p:menuitem value="Lister  Communes" action="#{menuView.update}" url="listercommune.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+        <p:submenu label="Quartier">
+            <p:menuitem value="Nouveau Quartier" action="#{menuView.save}" url="ajouterquartier.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Modifier Quartier" action="#{menuView.update}" url="modifierquartier.xhtml"  icon="pi pi-refresh" />
+            <p:menuitem value="Lister les Quartiers" action="#{menuView.update}" url="listerquartier.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+         
+        
+    </p:panelMenu>
+</h:form> 
+ <h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="Mes Commerçants" icon="pi pi-file">
+            <p:menuitem value="Nouveau Commerçant" url="./ajoutercommercant.xhtml"/>
+            <p:menuitem value="Modifier Commerçant" url="./modifiercommercant.xhtml" />
+            <p:menuitem value=" Supprimer Commerçant" url="./supprimercommercant.xhtml" />
+            <p:separator />
+              <p:menuitem value="lister les Commerçants" url="./listercommercant.xhtml" />
+        </p:submenu>
+         <p:submenu label="Categorie" icon="pi pi-pencil">
+            <p:menuitem value="Nouvelle Categorie " url="./ajoutercategorie.xhtml" icon="pi pi-angle-double-left" />
+            <p:menuitem value="Modifier Categorie" url="./modifiercategorie.xhtml" icon="pi pi-angle-double-right" />
+            <p:menuitem value="Supprimer Categorie" url="./supprimercategorie.xhtml" icon="pi pi-angle-double-right" />
+            <p:separator />
+            <p:menuitem value="Lister les Categories" url="./listercategorie.xhtml" icon="pi pi-angle-double-right" />
+        </p:submenu>
+ 
+        <p:submenu label="Boutiques" icon="pi pi-pencil">
+            <p:menuitem value="Nouvelle Boutique " url="./ajouterboutique.xhtml" icon="pi pi-angle-double-left" />
+            <p:menuitem value="Modifier Boutique" url="./modifierboutique.xhtml" icon="pi pi-angle-double-right" />
+            <p:menuitem value="Supprimer Boutique" url="./supprimerboutique.xhtml" icon="pi pi-angle-double-right" />
+            <p:separator />
+            <p:menuitem value="Lister les Boutiques" url="./listerboutique.xhtml" icon="pi pi-angle-double-right" />
+        </p:submenu>
+ 
+        
+          
+        <p:menuitem value="Deconnexion" url="./connexionadministrateur.xhtml" icon="pi pi-times" />
+ 
+        <f:facet name="options">
+            <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search commerçant"/>
+            <p:commandButton type="button" value="Bonjour Mr NDIAYE" icon="pi pi-home"  />
+        </f:facet>
+    </p:menubar>
+</h:form>
+
+
+<h:form id="form"  style="position: absolute; top: 90px; left: 220px;width:1100px ">
+    <p:growl id="msgs" showDetail="true"/>
+ 
+    <p:dataTable id="cars1" widgetVar="cars1" var="car" value="#{dtAddRowView.cars1}" editable="true" style="margin-bottom:20px">
+        <f:facet name="header">
+            Liste des Communes
+        </f:facet>
+ 
+        <p:ajax event="rowEdit" listener="#{dtAddRowView.onRowEdit}" update=":form:msgs" />
+        <p:ajax event="rowEditCancel" listener="#{dtAddRowView.onRowCancel}" update=":form:msgs" />
+ 
+         
+        <p:column headerText="Nom de la commune" >
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{car.id}" /></f:facet>
+                <f:facet name="input"><p:inputText id="modelInput" value="#{car.id}" style="width:100%"/></f:facet>
+            </p:cellEditor>
+        </p:column>
+        
+ 
+        <p:column headerText="Departement"   >
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
+                <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
+            </p:cellEditor>
+        </p:column>
+ 
+        
+         
+         
+        <p:column headerText="Modifier" style="width:100px">
+            <p:rowEditor />
+        </p:column>
+    </p:dataTable>
+ 
+      
+ 
+ </h:form>
+
+</h:body>
+</html>
+ 

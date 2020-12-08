@@ -1,0 +1,45 @@
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">         
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta  />
+<title>Ajout commercant</title>
+</h:head>
+<h:body>
+<h3>Ajout des commercants</h3>
+ <h:form>
+
+		<h:panelGrid columns="2" cellpadding="5">
+			<h:outputLabel for="nom" value="Nom :" />
+			<h:inputText id="nom" value="#{commercantBean.c.nom}"></h:inputText>
+				<h:outputLabel for="prenom" value="Prenom :" />
+			<h:inputText id="prenom" value="#{commercantBean.c.prenom}"></h:inputText>
+           <h:outputLabel for="adresse" value="adresse:" />
+           <!--  <h:selectOneMenu id="adresse" value="#{commercantBean.c.adresse}">
+			<f:selectItems value ="#{commercantBean.liste}"></f:selectItems>
+			</h:selectOneMenu>-->
+			<h:inputText id="adresse" value="#{commercantBean.c.adresse}"></h:inputText>
+		<!--  <h:outputLabel type="date" for="datenaiss" value="datenaiss:" />	
+		<h:inputText id="datenaiss" value="#{commercantBean.c.datenaiss}"></h:inputText>  -->
+		
+		<h:outputLabel for="motpass" value="motpass :" />
+		<h:inputText id="motpass" value="#{commercantBean.c.motpass}"></h:inputText>
+		
+		<h:outputLabel for="telephone" value="telephone :" />
+		<h:inputText id="telephone" value="#{commercantBean.c.telephone}"></h:inputText> 
+		
+		<h:outputLabel for="email" value="email:" />
+		<h:inputText id="email" value="#{commercantBean.c.email}"></h:inputText>
+
+			<h:commandButton value="Ajouter" actionListener="#{commercantBean.addCommercant}"></h:commandButton>
+
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

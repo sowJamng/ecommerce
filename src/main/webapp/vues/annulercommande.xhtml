@@ -1,0 +1,133 @@
+     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">         
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title> annuler commande</title>
+</h:head>
+<h:body>
+ 
+ 
+	  <h:form columns="2"   style="position: absolute; top: 60px; left: 10px;">
+    <p:growl>
+        <p:autoUpdate />
+    </p:growl>
+ 
+    <p:panelMenu style="width:200px">
+        <p:submenu label="Voir Statistiques">
+            <p:menuitem value="Mes depenses" action="#{menuView.save}" url="depense.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Mes meilleurs Produits" action="#{menuView.update}" url="meilleurproduit.xhtml"  icon="pi pi-refresh" />
+             <p:menuitem value="Mon Solde" action="#{menuView.update}" url="solde.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+         
+    </p:panelMenu>
+    <p:panelMenu style="width:200px">
+        <p:submenu label="Suivre mes Commandes">
+            <p:menuitem value="Commandes en cours" action="#{menuView.save}" url="commandes.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Suivre une Commande" action="#{menuView.update}" url="suivrecommande.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+         
+    </p:panelMenu>
+    
+</h:form> 
+ <h:form>  
+    <p:growl id="messages"/>
+     
+    <p:menubar>
+      <p:menuitem value="Acceuil"  url="acceuilclient.xhtml" icon="pi pi-times" />
+        <p:submenu label="Mes Commandes" icon="pi pi-file">
+            <p:menuitem value="Nouvelle Commande" url="./ajouterclient.xhtml"/>
+            <p:menuitem value="lister mes Commandes" url="./listercommande.xhtml" />
+            <p:separator />
+            <p:menuitem value="Modifier ma commande" url="./modifiercommande.xhtml" />
+            <p:menuitem value="Annuler une Commande" url="./annulercommande.xhtml" />
+        </p:submenu>
+ 
+         
+         
+         
+         <p:menuitem value="Mon Compte"  url="moncompteclient.xhtml" icon="pi pi-times" />
+        <p:menuitem value="Deconnexion" url="./connexionclient.xhtml" icon="pi pi-times" />
+ 
+        <f:facet name="options">
+            <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search commande"/>
+            <p:commandButton type="button" value="Bonjour Mr Sow" icon="pi pi-home"  />
+        </f:facet>
+    </p:menubar>
+</h:form>
+
+
+<h:form id="form"  style="position: absolute; top: 90px; left: 220px;width:1100px ">
+    <p:growl id="msgs" showDetail="true"/>
+ 
+    <p:dataTable id="cars1" widgetVar="cars1" var="car" value="#{dtAddRowView.cars1}" editable="true" style="margin-bottom:20px">
+        <f:facet name="header">
+            Liste de Mes Commandes
+        </f:facet>
+ 
+        <p:ajax event="rowEdit" listener="#{dtAddRowView.onRowEdit}" update=":form:msgs" />
+        <p:ajax event="rowEditCancel" listener="#{dtAddRowView.onRowCancel}" update=":form:msgs" />
+ 
+        <p:column headerText="Numero Commande" >
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{car.id}" /></f:facet>
+                <f:facet name="input"><p:inputText id="modelInput" value="#{car.id}" style="width:100%"/></f:facet>
+            </p:cellEditor>
+        </p:column>
+ 
+        <p:column headerText="Date de Commande"   >
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
+                <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
+            </p:cellEditor>
+        </p:column>
+ 
+        <p:column headerText="Date de livraison Prevu">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{car.brand}" /></f:facet>
+                <f:facet name="input">
+                    <h:selectOneMenu value="#{car.brand}" style="width:100%">
+                        <f:selectItems value="#{dtEditView.brands}" var="man" itemLabel="#{man}" itemValue="#{man}" />
+                    </h:selectOneMenu>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+        <p:column headerText="Numero facture">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{car.brand}" /></f:facet>
+                <f:facet name="input">
+                    <h:selectOneMenu value="#{car.brand}" style="width:100%">
+                        <f:selectItems value="#{dtEditView.brands}" var="man" itemLabel="#{man}" itemValue="#{man}" />
+                    </h:selectOneMenu>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+        <p:column headerText="Id_Commerçant">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{car.brand}" /></f:facet>
+                <f:facet name="input">
+                    <h:selectOneMenu value="#{car.brand}" style="width:100%">
+                        <f:selectItems value="#{dtEditView.brands}" var="man" itemLabel="#{man}" itemValue="#{man}" />
+                    </h:selectOneMenu>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+ 
+         
+ 
+        <p:column headerText="Modifier" style="width:100px">
+            <p:rowEditor />
+        </p:column>
+    </p:dataTable>
+ 
+      
+ 
+ </h:form>
+
+</h:body>
+</html>
+ 

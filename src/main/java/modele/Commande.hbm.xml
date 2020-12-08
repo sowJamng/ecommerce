@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 sept. 2019 13:48:29 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="modele.Commande" table="commande" schema="public">
+        <id name="idcommande" type="int">
+            <column name="idcommande" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="client" class="modele.Client" fetch="select">
+            <column name="idclient" not-null="true" />
+        </many-to-one>
+        <many-to-one name="facture" class="modele.Facture" fetch="select">
+            <column name="idfacture" not-null="true" />
+        </many-to-one>
+        <many-to-one name="clientvirtuel" class="modele.Clientvirtuel" fetch="select">
+            <column name="idclientv" not-null="true" />
+        </many-to-one>
+        <property name="datecmd" type="date">
+            <column name="datecmd" length="13" />
+        </property>
+        <set name="detailscommandes" table="detailscommande" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcommande" not-null="true" />
+            </key>
+            <one-to-many class="modele.Detailscommande" />
+        </set>
+        <set name="factures" table="facture" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcommande" />
+            </key>
+            <one-to-many class="modele.Facture" />
+        </set>
+    </class>
+</hibernate-mapping>

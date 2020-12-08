@@ -1,0 +1,96 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">         
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title> Acceuil</title>
+</h:head>
+<h:body>
+	  <h:form columns="2"   style="position: absolute; top: 60px; left: 10px;">
+    <p:growl>
+        <p:autoUpdate />
+    </p:growl> 
+    <p:panelMenu style="width:200px">
+        <p:submenu label="Voir Statistiques">
+            <p:menuitem value="Chiffre D'affaire" action="#{menuView.save}" url="chiffredaffaire.xhtml" icon="pi pi-save" />
+            <p:menuitem value="Meilleurs clients" action="#{menuView.update}" url="meilleurclient.xhtml"  icon="pi pi-refresh" />
+        </p:submenu>
+        <p:submenu label="Gerer Stock">
+            <p:menuitem value="Voir seuil atteint" action="#{menuView.delete}" url="seuilatteint.xhtml"  ajax="false" icon="pi pi-times"/>
+            <p:menuitem value="Reapprovisionement" action="#{menuView.delete}" url="reapprovisionement.xhtml"  ajax="false" icon="pi pi-times"/>
+        </p:submenu>
+        <p:separator />        
+        <p:submenu label="Comptes" >
+         <p:menuitem value="Nouveau Compte" url="./ajoutercompte.xhtml" icon="pi pi-home" />
+                    <p:menuitem value="Liste des Compte" url="./listecompte.xhtml" icon="pi pi-file" />
+                    <p:menuitem value="Depôt" url="./depot.xhtml" icon="pi pi-arrow-down" />
+                    <p:menuitem value="Retrait" url="retrait.xhtml" icon="pi pi-briefcase" />
+        </p:submenu>
+        <p:submenu label="Ventes" >            
+                    <p:menuitem value="Vente en Cours" url="./venteencours.xhtml" icon="pi pi-home" />
+                    <p:menuitem value="A liver " url="./alivrer.xhtml" icon="pi pi-file" />
+                    <p:menuitem value="Vente Annulé" url="./venteannuler.xhtml" icon="pi pi-arrow-down" />                    
+        </p:submenu>
+    </p:panelMenu>
+</h:form> 
+ <h:form>  
+    <p:growl id="messages"/>
+    <p:menubar>
+        <p:submenu label="Mes Clients" icon="pi pi-file">
+            <p:menuitem value="Nouveau Client" url="./ajouterclient.xhtml"/>
+            <p:menuitem value="lister nos Clients" url="./listerclient.xhtml" />
+            <p:separator />
+            <p:menuitem value="Modifier un Client" url="./modifierclient.xhtml" />
+            <p:menuitem value=" Supprimer un Client" url="./supprimerclient.xhtml" />
+        </p:submenu>
+        <p:submenu label="Mes Produits" icon="pi pi-pencil">
+            <p:menuitem value="Nouveau Produit" url="./ajouterproduit.xhtml" icon="pi pi-angle-double-left" />
+            <p:menuitem value="Modifier un Produit" url="./modifierproduit.xhtml" icon="pi pi-angle-double-right" />
+            <p:menuitem value="Supprimer un Produit" url="./supprimerproduit.xhtml" icon="pi pi-angle-double-right" />
+            <p:menuitem value="Lister les Produits" url="./listerproduit.xhtml" icon="pi pi-angle-double-right" />
+        </p:submenu>         
+         <p:menuitem value="Voir mes Boutiques" url="./mesboutique.xhtml" icon="pi pi-times" />
+         <p:menuitem value="Mon Compte"  url="moncompteClient.xhtml" icon="pi pi-times" />
+        <p:menuitem value="Deconnexion" url="./connexionClient.xhtml" icon="pi pi-times" />
+         <f:facet name="options">
+            <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search client"/>
+            <p:commandButton type="button" value="Deconnection" icon="pi pi-home"  />
+        </f:facet>
+    </p:menubar>
+</h:form>
+<h3>Ajout des Clientss</h3>
+
+ <!-- 
+ <h:form>
+ <p:panelGrid id="pan" columns="3" style="position: absolute; top: 100px; left: 100px;">
+			<f:facet name="header"> Nouveau client </f:facet> -->		
+    <h:form id="form"  style="position: absolute; top: 90px; left: 400px;width:600px ">
+<p:panel id="panel" header="Nouveau Client" >     
+     <h:panelGrid     columns="3" cellpadding="5" style="font-size:16pt" >			
+     <h:outputLabel value="Prenom"/>
+     <p:inputText required="true"  value="#{ClientBean.client.prenom}"/><br/>
+     <h:outputLabel value="Nom"/>
+     <p:inputText required="true"  value="#{ClientBean.client.nom}"/><br/>
+     <h:outputLabel value="Adresse"/>
+     <p:inputText required="true"  value="#{ClientBean.client.adresse}"/><br/>
+     <h:outputLabel value="Date_naissance"/>
+     <p:calendar required="true"  value="#{ClientBean.client.datenaiss}"/><br/>
+     <h:outputLabel  value="Telephone"/>
+     <p:inputText required="true"   value="#{ClientBean.client.telephone}"/><br/>
+     <h:outputLabel value="Login"/>
+     <p:inputText required="true"  value="#{ClientBean.client.email}"/><br/>
+     <h:outputLabel value="Mot de passe"/>
+     <h:inputSecret required="true"  value="#{ClientBean.client.motpass}"/><br/>
+     <h:outputLabel value="Confirmer mot de passe"/>
+     <h:inputSecret required="true"   value="confirmer_password"/><br/>
+	<h:commandButton value="Ajouter" actionListener="#{ClientBean.addClient}"></h:commandButton>
+	</h:panelGrid>	
+</p:panel>
+   </h:form>
+</h:body>
+</html>
+ 
